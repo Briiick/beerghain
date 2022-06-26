@@ -1,14 +1,11 @@
 import React from "react";
 
-// reactstrap components
-import { Container, Row } from "reactstrap";
-
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
-import CompanyDash from "components/CompanyDash/index.jsx";
+import CompanyDash from "components/CompanyList/index.jsx";
 
 class Airbnb extends React.Component {
   componentDidMount() {
