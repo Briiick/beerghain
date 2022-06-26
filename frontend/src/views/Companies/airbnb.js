@@ -7,6 +7,22 @@ import CardsFooter from "components/Footers/CardsFooter.js";
 // index page sections
 import CompanyDash from "components/CompanyList/index.jsx";
 
+import Popup from "./Popup";
+
+import { Framework } from "@superfluid-finance/sdk-core";
+import { ethers } from "ethers";
+
+const ALCHEMY_ID = process.env.ALCHEMY_ID;
+
+const provider = new ethers.providers.AlchemyProvider(
+  "rinkeby",
+  ALCHEMY_ID
+);
+const sf = await Framework.create({
+  networkName: "rinkeby",
+  provider
+});
+
 class Airbnb extends React.Component {
   componentDidMount() {
     document.documentElement.scrollTop = 0;
