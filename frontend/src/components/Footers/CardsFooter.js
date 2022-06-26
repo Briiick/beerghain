@@ -37,7 +37,7 @@ class CardsFooter extends React.Component {
     return (
       <>
         <footer className="footer has-cards">
-          <Container className="container-lg">
+          {/* <Container className="container-lg">
             <Row>
               <Col className="mb-5 mb-md-0" md="6">
                 <Card className="card-lift--hover shadow border-0">
@@ -60,15 +60,15 @@ class CardsFooter extends React.Component {
                 </Card>
               </Col>
             </Row>
-          </Container>
+          </Container> */}
           <Container>
             <Row className="row-grid align-items-center my-md">
               <Col lg="6">
                 <h3 className="text-primary font-weight-light mb-2">
-                  Thank you for supporting us!
+                  Supporting the next generation of online services.
                 </h3>
                 <h4 className="mb-0 font-weight-light">
-                  Let's get in touch on any of these platforms.
+                  In partnership with the following:
                 </h4>
               </Col>
               <Col className="text-lg-center btn-wrapper" lg="6">
@@ -77,7 +77,6 @@ class CardsFooter extends React.Component {
                   color="twitter"
                   href="https://twitter.com/creativetim"
                   id="tooltip475038074"
-                  target="_blank"
                 >
                   <span className="btn-inner--icon">
                     <i className="fa fa-twitter" />
@@ -91,7 +90,6 @@ class CardsFooter extends React.Component {
                   color="facebook"
                   href="https://www.facebook.com/creativetim"
                   id="tooltip837440414"
-                  target="_blank"
                 >
                   <span className="btn-inner--icon">
                     <i className="fa fa-facebook-square" />
@@ -105,7 +103,6 @@ class CardsFooter extends React.Component {
                   color="dribbble"
                   href="https://dribbble.com/creativetim"
                   id="tooltip829810202"
-                  target="_blank"
                 >
                   <span className="btn-inner--icon">
                     <i className="fa fa-dribbble" />
@@ -119,7 +116,6 @@ class CardsFooter extends React.Component {
                   color="github"
                   href="https://github.com/creativetimofficial"
                   id="tooltip495507257"
-                  target="_blank"
                 >
                   <span className="btn-inner--icon">
                     <i className="fa fa-github" />
@@ -131,56 +127,6 @@ class CardsFooter extends React.Component {
               </Col>
             </Row>
             <hr />
-            <Row className="align-items-center justify-content-md-between">
-              <Col md="6">
-                <div className="copyright">
-                  © {new Date().getFullYear()}{" "}
-                  <a
-                    href="https://www.creative-tim.com?ref=adsr-footer"
-                    target="_blank"
-                  >
-                    Creative Tim
-                  </a>
-                  .
-                </div>
-              </Col>
-              <Col md="6">
-                <Nav className="nav-footer justify-content-end">
-                  <NavItem>
-                    <NavLink
-                      href="https://www.creative-tim.com?ref=adsr-footer"
-                      target="_blank"
-                    >
-                      Creative Tim
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      href="https://www.creative-tim.com/presentation?ref=adsr-footer"
-                      target="_blank"
-                    >
-                      About Us
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      href="http://blog.creative-tim.com?ref=adsr-footer"
-                      target="_blank"
-                    >
-                      Blog
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      href="https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md"
-                      target="_blank"
-                    >
-                      MIT License
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-              </Col>
-            </Row>
           </Container>
         </footer>
       </>

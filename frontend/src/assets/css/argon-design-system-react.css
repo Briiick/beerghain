@@ -1,26 +1,4 @@
-/*!
 
-=========================================================
-* Argon Design System React - v1.1.0 based on Argon Design System - v1.1.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-/*!
- * Bootstrap v4.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 :root {
   --blue: #5e72e4;
   --indigo: #5603ad;
@@ -54,7 +32,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Manrope";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -63,7 +41,7 @@
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
+  font-family: "Manrope";
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
@@ -71,9 +49,22 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
+@font-face {
+  font-family: 'manrope';
+  src: url('Manrope-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'manrope';
+  src: url('Manrope-ExtraBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: bold;
+}
+
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Manrope";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -173,7 +164,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, "Manrope";
   font-size: 1em; }
 
 pre {
@@ -4579,7 +4570,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif, "Manrope";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4664,7 +4655,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif, "Manrope";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -12895,7 +12886,7 @@ textarea[resize="horizontal"] {
 
 .navbar-nav .nav-link {
   font-size: 0.9rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif, "Manrope";
   font-weight: 400;
   text-transform: normal;
   letter-spacing: 0;

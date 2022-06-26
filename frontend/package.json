@@ -48,11 +48,13 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@fontsource/manrope": "^4.5.10",
     "@rainbow-me/rainbowkit": "^0.3.4",
     "bootstrap": "4.3.1",
     "classnames": "2.2.6",
     "ethers": "^5.6.9",
     "headroom.js": "0.11.0",
+    "manrope": "^2.0.0",
     "moment": "2.24.0",
     "node-sass": "^7.0.1",
     "nouislider": "14.1.1",

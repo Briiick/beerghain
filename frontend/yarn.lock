@@ -1573,6 +1573,11 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.1"
 
+"@fontsource/manrope@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/manrope/-/manrope-4.5.10.tgz#406a7066f72ffc649ee1b3716430b50545c692fd"
+  integrity sha512-1R4A3uXpX2XbNc1LEZdidJWPaQPTH2LiIaB2n4+4D6IrIK/vkIlYx/YtvMLZK36OVWbWY8CYfM+ufrwUAVpEGQ==
+
 "@fortawesome/fontawesome-common-types@^0.2.36":
   version "0.2.36"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.36.tgz#b44e52db3b6b20523e0c57ef8c42d315532cb903"
@@ -8794,6 +8799,11 @@ makeerror@1.0.12:
   integrity sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==
   dependencies:
     tmpl "1.0.5"
+
+manrope@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/manrope/-/manrope-2.0.0.tgz#845bb0e78176ef4c2907ed5cfa8ff2622fbd604e"
+  integrity sha512-3IRhDEj8j6kjVcN/CtGc8ejBxTPBkYv+w6LHjy/IRwZ8upg7HzTg9wc/3/l11ip+6E3RG1+ivG3l6M4izq1x0A==
 
 map-cache@^0.2.0, map-cache@^0.2.2:
   version "0.2.2"
