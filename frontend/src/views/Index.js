@@ -4,8 +4,8 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 
 // core components
-import DemoNavbar from "views/Subscribe/node_modules/components/Navbars/DemoNavbar.js.js";
-import CardsFooter from "views/Subscribe/node_modules/components/Footers/CardsFooter.js.js";
+import DemoNavbar from "components/Navbars/DemoNavbar.js";
+import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
 import Hero from "../components/Hero/index.jsx";
@@ -19,7 +19,6 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   componentDidMount() {
     document.documentElement.scrollTop = 0;

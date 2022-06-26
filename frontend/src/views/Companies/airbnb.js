@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-// import CardsFooter from "components/Footers/CardsFooter.js";
+import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
 import CompanySub from "components/CompanySub/index.jsx";
@@ -13,6 +13,9 @@ import { CreateFlow } from "components/Superfluid/createflow.js";
 
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
+import { wagmiClient, chains } from "components/Wagmi/WagmiClient.js";
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiConfig } from 'wagmi';
 
 const ALCHEMY_ID = process.env.ALCHEMY_ID;
 
@@ -38,8 +41,9 @@ function FlowPopUp() {
       </Popup>
     </div>
   );
-
 }
+
+
 
 class Airbnb extends React.Component {
 
@@ -51,13 +55,18 @@ class Airbnb extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
-          <main ref="main">
-            hi Airbnb
-            <CompanySub company={"Airbnb"} />
-            <FlowPopUp/>
-          </main>
-        {/* <CardsFooter /> */}
+        <WagmiConfig client={wagmiClient}>
+          <RainbowKitProvider chains={chains} coolMode>
+            <>
+              <DemoNavbar />
+              <main ref="main">
+                <CompanySub company={"Airbnb"}/>
+
+              </main>
+              <CardsFooter />
+            </>
+          </RainbowKitProvider>
+        </WagmiConfig>
       </>
     );
   }

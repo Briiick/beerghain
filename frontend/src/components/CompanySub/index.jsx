@@ -23,9 +23,13 @@ export const CompanySub = ({ company }) => {
                     
                     oh it's {company} time
 
-                    {!data &&
+                    {!data ?
                       <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
                         <ConnectButton />
+                      </div>
+                      :
+                      <div>
+                        <button>Subscribe</button>
                       </div>
                     }
 
