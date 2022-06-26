@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { GiSplashyStream } from "react-icons/gi";
-import { CompanyForm, TextInput, Submit, StreamingButton, Headings } from './styles.js';
+import { CompanyForm, TextInput, Submit, StreamingButton, Headings, ProfileWrap } from './styles.js';
 import { UserList } from '../UserList/index.jsx';
 import Fade from 'react-reveal/Fade';
 // reactstrap components
@@ -9,13 +9,18 @@ import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export const Hero = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [TVL, setTVL] = useState(100);
-  const PREMIUM_PRICE_MONTHLY = 10;
+  const PREMIUM_PRICE_MONTHLY = 6;
   const SECONDS_PER_MONTH = 2628288;
+  const [currAddress, setCurrAddress] = useState('');
   const { data } = useAccount();
-  const [currAddress, setCurrAddress] = useState(data?.address);
+  
+  
+  useEffect(() => {
+    setCurrAddress(data?.address);
+  });
 
   const handleStream = (e) => {
     setStreaming(!streaming);
@@ -40,72 +45,77 @@ export const Hero = () => {
                 <Row className="align-items-center justify-content-center">
                   <Col className="text-center">
                     
-                    <div style={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '3% 6%', backgroundColor: '#191b1f', border: "2px solid black", borderRadius: '15px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '3% 6%' }}>
+                      <Fade >
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Headings>
+                            <h5>{parseFloat(PREMIUM_PRICE_MONTHLY/SECONDS_PER_MONTH)}Ξ</h5>
+                            <h3>Premium/second</h3>
+                          </Headings>
+                          <Headings>
+                            <h5>{parseFloat(PREMIUM_PRICE_MONTHLY)}Ξ</h5>
+                            <h3>Premium/month</h3>
+                          </Headings>
+                        </div>
                         <Headings>
-                          <h3>Insurance Premium</h3>
-                          <h5>{parseFloat(PREMIUM_PRICE_MONTHLY/SECONDS_PER_MONTH)}Ξ</h5>
-                        </Headings>
-                        <Headings>
-                        <h3>Contract TVL</h3>
                         <h5>{TVL}Ξ</h5>
+                        <h3>Contract TVL</h3>
                         </Headings>
-                      </div>
-
-                      <Fade when={active}>
-                        <div className="mt-5" style={{ marginTop: 0 }}>
-                          <small className="text-white font-weight-bold mb-0 mr-2">
-                            {currAddress && `Address: ${currAddress}:`}
-                          </small>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
-                          <StreamingButton streaming={streaming}>{streaming ? "Covered" : "Not Covered"}</StreamingButton>
-                        </div>
                       </Fade>
                     </div>
-
+                    {active && 
+                      <Fade when={active}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <ProfileWrap>
+                              <div className="mt-5" style={{ marginTop: 0 }}>
+                                <small className="text-white font-weight-bold mb-0 mr-2">
+                                  {currAddress && `Address: ${currAddress}:`}
+                                </small>
+                              </div>
+                              <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
+                                <StreamingButton streaming={streaming}>{streaming ? "Covered" : "Not Covered"}</StreamingButton>
+                              </div>
+                              <Button className="btn-icon mb-3 mb-sm-0" size="lg" style={{ borderRadius: '15px', margin: '10px' }} onClick={(e) => handleStream(e)}>
+                                <span className="btn-inner--icon mr-1" style={{ marginBottom: '10px' }} ><GiSplashyStream style={ !streaming ? { marginBottom: '6px', color: 'green'} : {marginBottom: '6px', color: "tomato" }} /></span>
+                                <span className="btn-inner--text">
+                                  {!streaming ? <span style={{ color: 'green' }}>Resume Coverage</span> : <span style={{ color: 'tomato' }}>Stop Coverage</span>}
+                                </span>
+                              </Button>
+                          </ProfileWrap>
+                        </div>
+                      </Fade>
+                    }
 
                     <div className="btn-wrapper mt-5">
-                      {!data &&
+                      {!currAddress &&
                         <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
                           <ConnectButton />
                         </div>
                       }
                       {!active &&
-                        <Fade when={data}>
-                          <CompanyForm onSubmit={(e) => handleSubmit(e)} style={active ? {opacity: 0} : {opacity: 1}}>
-                            <h4>Create Company Subscription</h4>
-                            <TextInput type="text" placeholder="Company Name" id="name" required/>
-                            <TextInput type="email" placeholder="Company Email" id="email" required/>
-                            {/* <label for="file">Choose file to upload</label> */}
-                            <TextInput type="number" id="price" placeholder="Monthly Price" required/>
-                            <input type="hidden" id="address" value={currAddress} />
-                            <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription">Issue Subscription</Submit>
-                          </CompanyForm>
+                        <Fade>
+                          <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', width: '100%' }}>
+                            <CompanyForm onSubmit={(e) => handleSubmit(e)} style={active ? {opacity: 0} : {opacity: 1}}>
+                              <h4 style={{ color: 'white' }}>Create Company Subscription</h4>
+                              <TextInput type="text" placeholder="Company Name" id="name" required/>
+                              <TextInput type="email" placeholder="Company Email" id="email" required/>
+                              {/* <label for="file">Choose file to upload</label> */}
+                              <TextInput type="number" id="price" placeholder="Monthly Price" required/>
+                              <input type="hidden" id="address" value={currAddress} />
+                              <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription">Issue Subscription</Submit>
+                            </CompanyForm>
+                          </div>
                         </Fade>
                       }
                     </div>
-                      <Fade when={active}>
-                        <Button className="btn-icon mb-3 mb-sm-0" size="lg" style={{ borderRadius: '15px', marginBottom: '5vh'}} onClick={(e) => handleStream(e)}>
-                          <span className="btn-inner--icon mr-1" style={{ marginBottom: '10px' }} >
-                            <GiSplashyStream style={ !streaming ? { marginBottom: '6px', color: 'green'} : {marginBottom: '6px', color: "red" }} />
-                          </span>
-                          <span className="btn-inner--text">
-                            {!streaming ? 
-                            <span style={{ color: 'green' }}>Resume Coverage</span>
-                            :
-                            <span style={{ color: 'red' }}>Stop Coverage</span>
-                            }
-                          </span>
-                        </Button>
-                      </Fade>
+                    {active &&  
                       <Fade when={active}>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                           <Headings style={{ textAlign: 'center', marginTop: '20px' }}><h3>User List</h3></Headings>
                           <UserList users={users} />
                         </div>
                       </Fade>
-
+                    }
                   </Col>
                 </Row>
               </div>
