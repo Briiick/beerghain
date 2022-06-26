@@ -1,13 +1,16 @@
 import express from 'express';
 const router = express.Router();
 
-let CompanyTable = []
+let CompanyTable = {}
 
-function CompanyEntry(eth_address, price, name) {
-    this.eth_address = eth_address;
+function CompanyEntry(price, name) {
     this.userList = []
     this.price = price;
     this.name = name;
+}
+
+function UesrEntry() {
+    this.associatedCompanies = [];
 }
 
 // Test get request
@@ -17,8 +20,10 @@ router.get('/company/setup', (req, res) => {
     res.send('Company route');
 })
 
+// Setup enterprise subscription service for a wallet address
 router.post('/company/setup', (req, res) => {
-    let newEntry = new CompanyEntry(req.body["eth_address"], Number(req.body["price"]), req.body["name"])
+    let companyID = req.body["eth_address"];
+    let newEntry = new CompanyEntry(Number(req.body["price"]), req.body["name"])
     // validate new entry's keys
     for (let key of  Object.keys(newEntry)){
         if (key !== "userList") {
@@ -28,30 +33,30 @@ router.post('/company/setup', (req, res) => {
             }
         }
     }
-    CompanyTable.push(newEntry)
+    CompanyTable[companyID] = newEntry
     res.sendStatus(200);
 })
 
-
+// After wallet login, check if that eth addy has a subscription setup
+// Uses query strings
 router.get('/company/check_exist', (req, res) => {
-    let companyID = req.query["eth_address"]
-    for (let company of CompanyTable) {
-        if(company["eth_address"] === companyID) {
-            res.send(true);
-            return;
-        }
+    if (String(req.query["eth_address"]) in CompanyTable) {
+        res.send(true)
+    } else {
+        res.send(false)
     }
-    res.send(false)
 })
 
+// Get enterprise wallet's associated users
+// Uses query strings
 router.get('/company/get_users', (req, res) => {
     let requestedCompany = req.query["eth_address"]
-    for (let company of CompanyTable) {
-        if(company["eth_address"] === requestedCompany) {
-            res.send(company["userList"]);
-            return;
-        }
+    let companyID = String(req.query["eth_address"])
+    if (companyID in CompanyTable) {
+        res.send(CompanyTable[companyID]["userList"])
+    } else {
+        res.send([])
     }
 })
- 
+
 module.exports = router;
