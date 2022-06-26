@@ -7,10 +7,11 @@ export const UserList = (props) => {
   const [dummy, setDummy] = useState(0);
 
   const ITEMSPERPAGE = 4;
-  const num_users = props.users.length;
+  const num_users = Object.keys(props.users).length;
   const pages = Math.floor(num_users / ITEMSPERPAGE) + 1;
   const minHeight = 40 + Math.min(num_users, ITEMSPERPAGE) * 60;
   const leftOver = ITEMSPERPAGE - (num_users % ITEMSPERPAGE);
+  console.log(props.users, "ASDASDS", num_users)
 
     return (
       <span >
@@ -20,18 +21,19 @@ export const UserList = (props) => {
           <Border minHeight={minHeight}>
             <Header>
               <Heading><h6>User</h6></Heading>
-              <Heading><h6>Streaming</h6></Heading>
+              <Heading><h6>Timestamp</h6></Heading>
               <Heading><h6>Action</h6></Heading>
             </Header>
             
-            {props.users.map((x, p) => {
+            {Object.keys(props.users).map((x, p) => {
               let i = p + 1
+
                 return (
                   <Cell hidden={!(i <= (ITEMSPERPAGE * index) && i > (ITEMSPERPAGE * (index - 1)))} key={i}>
-                    <InnerCell>{x.name}</InnerCell>
-                    <InnerCell>{x.status ? "Live" : "Expired"}</InnerCell>
+                    <InnerCell>{x}</InnerCell>
+                    <InnerCell>{props.users[x].timeStamp}</InnerCell>
                     <InnerCell>
-                      {x.status ? <Stage>Issue Claim</Stage> : " - "}
+                      {<Stage>Issue Claim</Stage>}
                     </InnerCell>
                   </Cell>
                 )

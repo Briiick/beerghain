@@ -15,18 +15,21 @@ function UesrEntry(timestamp) {
 
 // Setup enterprise subscription service for a wallet address
 router.post('/company/setup', (req, res) => {
-    let companyID = req.body["eth_address"];
-    let newEntry = new CompanyEntry(Number(req.body["price"]), req.body["name"])
+    let companyID = String(req.query["eth_address"]);
+    let newEntry = new CompanyEntry(Number(req.query["price"]), req.query["name"])
     // validate new entry's keys
-    for (let key of  Object.keys(newEntry)){
-        if (key !== "userList") {
-            if (!newEntry[key]) {
-                // Error handling from front end
-                res.sendStatus(400);
-            }
-        }
-    }
+    // for (let key of  Object.keys(newEntry)){
+    //     if (key !== "userList") {
+    //         if (!newEntry[key]) {
+    //             // Error handling from front end
+    //             console.log("error creating company")
+    //             res.sendStatus(400);
+    //         }
+    //     }
+    // }
     CompanyTable[companyID] = newEntry
+    console.log("successfully created company", CompanyTable)
+    console.log(req.query)
     res.sendStatus(200);
 })
 
@@ -87,6 +90,7 @@ router.post('/user/subscribe/:companyId', (req, res) => {
     let newEntry = new UesrEntry(new Date().getTime())
     
     CompanyTable[companyID]["userList"][userID] = newEntry
+    console.log(CompanyTable)
     res.sendStatus(200);
 })
 

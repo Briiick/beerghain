@@ -54,36 +54,61 @@ export const Hero = () => {
   const SECONDS_PER_MONTH = 2628288;
   const [currAddress, setCurrAddress] = useState('');
   const { data } = useAccount();
-  
-  
+  const [users, setUsers] = useState([]);
+  const [inputs, setInputs] = useState({});
+  // const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}, {name: "Gayvid Witten", status: false}, {name: "Eilrene Gwu", status: true}, {name: "Trenton I Reckon", status: true}]; 
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputs(values => ({...values, [name]: value}));
+  }
   
   useEffect(() => {
     setCurrAddress(data?.address);
+    console.log(currAddress)
     axios.get('http://localhost:8080/company/check_exist?eth_address='+currAddress)
     .then((resp) => {
-      console.log("Helo world",resp)
+      if (resp["data"] === !active){
+        setActive(resp["data"])
+      }
     })
-    .catch((err) => {
-      console.log("Error found here ", err)
-    })
+    .catch(err => console.log("check exist error here"))
 
-    // if(currAddress) {
-
-    //   axios.get('');
-    // }
   });
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/company/get_users?eth_address='+currAddress)
+    .then((resp) => {
+      console.log("Usere data here", resp["data"])
+      setUsers(resp["data"])
+      console.log("ASDASD", users); 
+    })
+    .catch(err => console.log("Get user error here"))
+
+
+  }, [active]);
 
   const handleStream = (e) => {
     setStreaming(!streaming);
   }
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("submitting: ", e.target.value);
-      setActive(true);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const price = e.target[2].value;
+    const address = currAddress;
+    console.log("ASDASD", name, email, price, address);
+    const body = {eth_address: address, price: price, name: name}
+    axios.post(`http://localhost:8080/company/setup?eth_address=${address}&price=${price}&name=${name}`)
+    .then(resp => {
+      console.log("created company sub!!")
+    })
+    .catch(err => console.log("error creating company"))
+    setActive(true);
+  }
 
-    const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}, {name: "Gayvid Witten", status: false}, {name: "Eilrene Gwu", status: true}, {name: "Trenton I Reckon", status: true}]; 
+    
 
     return (
       <>
@@ -142,13 +167,12 @@ export const Hero = () => {
                       {(!active && currAddress) &&
                         <Fade>
                           <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', width: '100%' }}>
-                            <CompanyForm onSubmit={(e) => handleSubmit(e)} style={active ? {opacity: 0} : {opacity: 1}}>
+                            <CompanyForm onSubmit={handleSubmit} style={active ? {opacity: 0} : {opacity: 1}}>
                               <h4 style={{ color: 'white' }}>Create Company Subscription</h4>
-                              <TextInput type="text" placeholder="Company Name" id="name" required/>
-                              <TextInput type="email" placeholder="Company Email" id="email" required/>
+                              <TextInput type="text" placeholder="Company Name" id="name" name="name" required/>
+                              <TextInput type="email" placeholder="Company Email" id="email" name="email" required/>
                               {/* <label for="file">Choose file to upload</label> */}
-                              <TextInput type="number" id="price" placeholder="Monthly Price" required/>
-                              <input type="hidden" id="address" value={currAddress} />
+                              <TextInput type="number" id="price" placeholder="Monthly Price" name="price" required/>
                               <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription">Issue Subscription</Submit>
                             </CompanyForm>
                           </div>
