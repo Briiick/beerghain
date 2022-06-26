@@ -44,3 +44,35 @@ export const Submit = styled.button`
         background-color: #0c1d37;
     }
 `;
+
+export const StreamingButton = styled.div`
+    padding: 16%;
+    margin: 2vh 0;
+    background-color: ${props => props.streaming ? "rgb(0,200,0, 0.2)" : "rgb(240,0,0, 0.2)"};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    outline: 1px solid ${props => props.streaming ? "rgb(0,200,0, 0.5)" : "rgb(240,0,0, 0.5)"};
+    white-space: nowrap;
+    transition: 0.3 ease;
+`;
+
+export const Headings = styled.div`
+    margin: 2vh 1vw;
+    width: 80%;
+
+    h3 {
+        font-size: 30px;
+        font-weight: 700;
+        background: -webkit-linear-gradient(60deg, #fe9144, #88119b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    h5 {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+    }
+`;

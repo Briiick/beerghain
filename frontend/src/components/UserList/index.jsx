@@ -13,7 +13,7 @@ export const UserList = (props) => {
   const leftOver = ITEMSPERPAGE - (num_users % ITEMSPERPAGE);
 
     return (
-      <span className="af-view" >
+      <span >
         <Wrapper>
         {!!num_users ?
 

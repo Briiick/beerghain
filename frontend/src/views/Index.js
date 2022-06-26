@@ -18,15 +18,8 @@ import { wagmiClient, chains } from "components/Wagmi/WagmiClient.js";
 class Index extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: '',
-    };
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin(e) {
-    this.setState({ loggedIn: true });
-  }
 
   componentDidMount() {
     document.documentElement.scrollTop = 0;
@@ -38,9 +31,9 @@ class Index extends React.Component {
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
           <>
-            <DemoNavbar loggedIn={this.state.loggedIn} handleLogin={this.handleLogin}/>
+            <DemoNavbar />
             <main ref="main">
-              <Hero loggedIn={this.state.loggedIn} handleLogin={this.handleLogin}/>
+              <Hero />
             </main>
             <CardsFooter />
           </>
