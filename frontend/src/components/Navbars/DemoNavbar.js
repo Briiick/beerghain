@@ -39,6 +39,7 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 class DemoNavbar extends React.Component {
   componentDidMount() {
     let headroom = new Headroom(document.getElementById("navbar-main"));
@@ -174,19 +175,7 @@ class DemoNavbar extends React.Component {
                 </Nav>
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
                   <NavItem className="d-none d-lg-block ml-lg-4">
-                    <Button
-                      className="btn-neutral btn-icon"
-                      color="default"
-                      href="www.alexbrickengey.com"
-                      target="_blank"
-                    >
-                      <span className="btn-inner--icon">
-                        <i className="fa fa-cloud-download mr-2" />
-                      </span>
-                      <span className="nav-link-inner--text ml-1">
-                        Connect Wallet
-                      </span>
-                    </Button>
+                      <ConnectButton />
                   </NavItem>
                 </Nav>
               </UncontrolledCollapse>
