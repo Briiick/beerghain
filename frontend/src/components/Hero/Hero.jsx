@@ -2,7 +2,8 @@ import React from "react";
 import { RiWallet3Fill, RiAlarmWarningLine, RiStopCircleLine } from "react-icons/ri";
 import { Logo } from 'assets/logo/logo.js';
 import { CompanyForm, TextInput, Submit } from './styles.js';
-// import Fade from 'react-reveal/Fade';
+import { UserList } from '../UserList/index.jsx';
+import Fade from 'react-reveal/Fade';
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
@@ -11,6 +12,7 @@ class Hero extends React.Component {
     super(props);
     this.state = {
       address: "",
+      active: false,
     }
   }
 
@@ -18,12 +20,15 @@ class Hero extends React.Component {
     this.setState({ total: 100 }); //Pass in actual total value in contract
   }
 
-  componentDidUpdate() {
-    // check if status has changed (i.e. if stream is still on)
-    return;
+  handleSubmit = (e) => {
+    // submit to backend pls RRRRRRUBAN
+    console.log("Submitting form", e.target.value);
+    this.setState({ active: true });
   }
 
+  
   render() {
+    const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}]; 
     return (
       <>
         <div className="position-relative" style={{ }}>
@@ -60,7 +65,7 @@ class Hero extends React.Component {
                         <span className="btn-inner--text" style={{ marginLeft: '3px' }}>Connect Wallet</span>
                       </Button>
                       :
-                        <CompanyForm>
+                        <CompanyForm onSubmit={(e) => this.handleSubmit(e)}>
                           <h4>Create Company Subscription</h4>
                           <TextInput type="text" placeholder="Company Name" id="name" />
                           <TextInput type="email" placeholder="Company Email" id="email" />
@@ -70,6 +75,9 @@ class Hero extends React.Component {
                           <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription" />
                         </CompanyForm>
                       }
+                      <Fade when={this.state.active}>
+                        <UserList users={users}/>
+                      </Fade>
 
 
                     </div>
