@@ -1,18 +1,36 @@
 import React from "react";
-
+import { RiWallet3Fill, RiAlarmWarningLine, RiStopCircleLine } from "react-icons/ri";
+import { Logo } from 'assets/logo/logo.js';
+import { CompanyForm, TextInput, Submit } from './styles.js';
+// import Fade from 'react-reveal/Fade';
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
 class Hero extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: "",
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ total: 100 }); //Pass in actual total value in contract
+  }
+
+  componentDidUpdate() {
+    // check if status has changed (i.e. if stream is still on)
+    return;
+  }
+
   render() {
     return (
       <>
-        <div className="position-relative" style={{ backgroundColor: 'black' }}>
-          {/* Hero for FREE version */}
+        <div className="position-relative" style={{ }}>
           <section className="section section-hero section-shaped" >
             {/* Background circles */}
             <div className="shape shape-style-1 shape-default" >
-              <span className="span-150"  />
+              {/* <span className="span-150" />
               <span className="span-50" />
               <span className="span-50" />
               <span className="span-75" />
@@ -21,53 +39,43 @@ class Hero extends React.Component {
               <span className="span-50" />
               <span className="span-100" />
               <span className="span-50" />
-              <span className="span-100" />
+              <span className="span-100" /> */}
             </div>
             <Container className="shape-container d-flex align-items-center py-lg">
               <div className="col px-0">
                 <Row className="align-items-center justify-content-center">
                   <Col className="text-center" lg="6">
-                    {/* <img
-                      alt="..."
-                      className="img-fluid"
-                      src={require("assets/img/brand/argon-react-white.png")}
-                      style={{ width: "200px" }}
-                    /> */}
-                    <h3 style={{ }}>Beerghain</h3>
+                    <Logo size={45}/>
                     <p className="lead text-white">
-                      The fastest way to set up streaming subscriptions
+                      On chain subscriptions
                     </p>
+
+
                     <div className="btn-wrapper mt-5">
-                      <Button
-                        className="btn-white btn-icon mb-3 mb-sm-0"
-                        color="default"
-                        // href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-landing-page"
-                        size="lg"
-                      >
+                      {this.props.loggedIn ?
+                      <Button className="btn-white btn-icon mb-3 mb-sm-0" color="default" size="lg">
                         <span className="btn-inner--icon mr-1">
-                          <i className="ni ni-cloud-download-95" />
+                          <RiWallet3Fill style={{ marginBottom: '4px', marginLeft: '2px' }} />
                         </span>
-                        <span className="btn-inner--text">Get Started</span>
-                      </Button>{" "}
-                      {/* <Button
-                        className="btn-icon mb-3 mb-sm-0"
-                        color="github"
-                        href="https://github.com/creativetimofficial/argon-design-system-react"
-                        size="lg"
-                        target="_blank"
-                      >
-                        <span className="btn-inner--icon mr-1">
-                          <i className="fa fa-github" />
-                        </span>
-                        <span className="btn-inner--text">
-                          <span className="text-warning mr-1">Star us</span>
-                          on Github
-                        </span>
-                      </Button> */}
+                        <span className="btn-inner--text" style={{ marginLeft: '3px' }}>Connect Wallet</span>
+                      </Button>
+                      :
+                        <CompanyForm>
+                          <h4>Create Company Subscription</h4>
+                          <TextInput type="text" placeholder="Company Name" id="name" />
+                          <TextInput type="email" placeholder="Company Email" id="email" />
+                          <label for="file">Choose file to upload</label>
+                          <input type="file" id="logo" accept="image/png, image/jpeg"/>
+                          <input type="hidden" id="address" value={this.state.address} />
+                          <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription" />
+                        </CompanyForm>
+                      }
+
+
                     </div>
                     <div className="mt-5">
                       <small className="text-white font-weight-bold mb-0 mr-2">
-                        1 code snippet
+                        {this.props.currAddress && `Address: ${this.props.currAddress}`}
                       </small>
                     </div>
                   </Col>
