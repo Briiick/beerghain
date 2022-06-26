@@ -39,9 +39,19 @@ export const Hero = () => {
       const connectedUserAddress = await signer.getAddress();
 
       setCurrAddress(connectedUserAddress);
+      getTVL();
     } else {
       console.log("Connect Failed");
     }
+  }
+
+  async function getTVL() {
+    provider = new ethers.providers.Web3Provider(ethereum);
+    let x = await provider.getBalance(CONTRACT_ADDRESS);
+    let y = ethers.utils.formatEther(x)
+
+    setTVL(y);
+    // getTVL();
   }
 
   const handleStream = (e) => {
