@@ -2,3 +2,4 @@ server/node_modules
 server/dist
 frontend/node_modules
 .DS_Store
+.env
