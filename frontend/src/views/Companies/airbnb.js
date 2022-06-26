@@ -28,8 +28,6 @@ const provider = new ethers.providers.AlchemyProvider(
 //   provider
 // });
 
-function FlowPopUp() {
-  const [ buttonPopup, setButtonPopup] = useState(false);
 
   return (
     <div>
@@ -61,7 +59,6 @@ class Airbnb extends React.Component {
               <DemoNavbar />
               <main ref="main">
                 <CompanySub company={"Airbnb"}/>
-
               </main>
               <CardsFooter />
             </>
