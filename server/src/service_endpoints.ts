@@ -33,6 +33,7 @@ router.post('/company/setup', (req, res) => {
 // After wallet login, check if that eth addy has a subscription setup
 // Uses query strings
 router.get('/company/check_exist', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     let companyID = String(req.query["eth_address"])
     if (companyID in CompanyTable) {
         res.send(true)

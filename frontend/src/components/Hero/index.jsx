@@ -3,6 +3,8 @@ import { GiSplashyStream } from "react-icons/gi";
 import { CompanyForm, TextInput, Submit, StreamingButton, Headings, ProfileWrap } from './styles.js';
 import { UserList } from '../UserList/index.jsx';
 import Fade from 'react-reveal/Fade';
+import axios from 'axios';
+
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 import { useAccount } from 'wagmi';
@@ -18,8 +20,21 @@ export const Hero = () => {
   const { data } = useAccount();
   
   
+  
   useEffect(() => {
     setCurrAddress(data?.address);
+    axios.get('http://localhost:8080/company/check_exist?eth_address='+currAddress)
+    .then((resp) => {
+      console.log("Helo world",resp)
+    })
+    .catch((err) => {
+      console.log("Error found here ", err)
+    })
+
+    // if(currAddress) {
+
+    //   axios.get('');
+    // }
   });
 
   const handleStream = (e) => {
