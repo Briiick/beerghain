@@ -18,6 +18,9 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import covalent from 'assets/img/covalent.jpeg';
+import superfluid from 'assets/img/superfluid.jpeg';
+import uma from 'assets/img/uma.png';
 // reactstrap components
 import {
   Button,
@@ -68,61 +71,62 @@ class CardsFooter extends React.Component {
                   Supporting the next generation of online services.
                 </h3>
                 <h4 className="mb-0 font-weight-light">
-                  In partnership with the following:
+                  Made possibly by the following:
                 </h4>
               </Col>
               <Col className="text-lg-center btn-wrapper" lg="6">
                 <Button
                   className="btn-icon-only rounded-circle"
                   color="twitter"
-                  href="https://twitter.com/creativetim"
+                  href=""
                   id="tooltip475038074"
+                  style={{ opacity: 0}}
                 >
                   <span className="btn-inner--icon">
                     <i className="fa fa-twitter" />
                   </span>
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip475038074">
-                  Follow us
+                  Superfluid
                 </UncontrolledTooltip>
                 <Button
                   className="btn-icon-only rounded-circle ml-1"
                   color="facebook"
-                  href="https://www.facebook.com/creativetim"
+                  href=""
                   id="tooltip837440414"
                 >
                   <span className="btn-inner--icon">
-                    <i className="fa fa-facebook-square" />
+                    <img src={superfluid} style={{ borderRadius: '100%', width: '20px', height: '20px'}}/>
                   </span>
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip837440414">
-                  Like us
+                  Superfluid
                 </UncontrolledTooltip>
                 <Button
                   className="btn-icon-only rounded-circle ml-1"
                   color="dribbble"
-                  href="https://dribbble.com/creativetim"
+                  href=""
                   id="tooltip829810202"
                 >
                   <span className="btn-inner--icon">
-                    <i className="fa fa-dribbble" />
+                  <img src={uma} style={{ borderRadius: '100%', width: '20px', height: '20px'}}/>
                   </span>
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip829810202">
-                  Follow us
+                  Uma
                 </UncontrolledTooltip>
                 <Button
                   className="btn-icon-only rounded-circle ml-1"
                   color="github"
-                  href="https://github.com/creativetimofficial"
+                  href=""
                   id="tooltip495507257"
                 >
                   <span className="btn-inner--icon">
-                    <i className="fa fa-github" />
+                  <img src={covalent} style={{ borderRadius: '100%', width: '20px', height: '20px'}}/>
                   </span>
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip495507257">
-                  Star on Github
+                  Covalent
                 </UncontrolledTooltip>
               </Col>
             </Row>
