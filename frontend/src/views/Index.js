@@ -8,7 +8,7 @@ import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
-import Hero from "../components/Hero/Hero.jsx";
+import Hero from "../components/Hero/index.jsx";
 
 // wagmi implementation
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
@@ -18,15 +18,8 @@ import { wagmiClient, chains } from "components/Wagmi/WagmiClient.js";
 class Index extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: '',
-    };
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin(e) {
-    this.setState({ loggedIn: true });
-  }
 
   componentDidMount() {
     document.documentElement.scrollTop = 0;
@@ -38,9 +31,9 @@ class Index extends React.Component {
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains} coolMode>
           <>
-            <DemoNavbar loggedIn={this.state.loggedIn} handleLogin={this.handleLogin}/>
+            <DemoNavbar />
             <main ref="main">
-              <Hero loggedIn={this.state.loggedIn} handleLogin={this.handleLogin}/>
+              <Hero />
             </main>
             <CardsFooter />
           </>

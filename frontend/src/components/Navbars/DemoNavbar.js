@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // JavaScript plugin that hides or shows a component based on your scroll
@@ -38,8 +21,9 @@ import {
   Col,
   UncontrolledTooltip
 } from "reactstrap";
-
+import { Logo } from 'assets/logo/logo.js';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 class DemoNavbar extends React.Component {
   componentDidMount() {
     let headroom = new Headroom(document.getElementById("navbar-main"));
@@ -74,10 +58,7 @@ class DemoNavbar extends React.Component {
           >
             <Container>
               <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
-                <img
-                  alt="..."
-                  src={require("assets/img/brand/argon-react-white.png")}
-                />
+                <Logo size={25}/>
               </NavbarBrand>
               <button className="navbar-toggler" id="navbar_global">
                 <span className="navbar-toggler-icon" />
@@ -174,7 +155,7 @@ class DemoNavbar extends React.Component {
                   </UncontrolledDropdown>
                 </Nav>
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                  <NavItem className="d-none d-lg-block ml-lg-4">
+                  <NavItem>
                       <ConnectButton />
                   </NavItem>
                 </Nav>

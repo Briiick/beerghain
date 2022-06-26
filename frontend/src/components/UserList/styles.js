@@ -55,8 +55,10 @@ export const InnerCell = styled.div`
   text-align: center;
 `;
 
-export const Stage = styled.div`
+export const Stage = styled.button`
   // flex: 1;
+  display: flex;
+  align-items: center;
   height: 80%;
   font-weight: 400;
   width: 60%;
@@ -64,7 +66,12 @@ export const Stage = styled.div`
   text-align: center;
   padding: 4% 10%;
   white-space: nowrap;
-  background-color: ${props => props.status === 'Passed' ? "#fae6e6" : props.status === 'Interviewing' ? "#eaf7ef": "#fcf8e7"};
+  background-color: #fae6e6;
+  border: none;
+
+  &:hover {
+    background-color: #ffc7c7;
+  }
 
   @media (max-width: 760px) {
     font-size: 13px;

@@ -13,25 +13,25 @@ export const UserList = (props) => {
   const leftOver = ITEMSPERPAGE - (num_users % ITEMSPERPAGE);
 
     return (
-      <span className="af-view" >
+      <span >
         <Wrapper>
         {!!num_users ?
 
           <Border minHeight={minHeight}>
             <Header>
               <Heading><h6>User</h6></Heading>
-              <Heading><h6>Date</h6></Heading>
-              <Heading><h6>Status</h6></Heading>
+              <Heading><h6>Streaming</h6></Heading>
+              <Heading><h6>Action</h6></Heading>
             </Header>
             
             {props.users.map((x, p) => {
               let i = p + 1
                 return (
                   <Cell hidden={!(i <= (ITEMSPERPAGE * index) && i > (ITEMSPERPAGE * (index - 1)))} key={i}>
-                    <InnerCell>{x.company}</InnerCell>
-                    <InnerCell>{x.date}</InnerCell>
+                    <InnerCell>{x.name}</InnerCell>
+                    <InnerCell>{x.status ? "True" : "False"}</InnerCell>
                     <InnerCell>
-                      <Stage status={x.status}>{x.status}</Stage>
+                      {!x.status ? <Stage>Issue Claim</Stage> : " - "}
                     </InnerCell>
                   </Cell>
                 )
