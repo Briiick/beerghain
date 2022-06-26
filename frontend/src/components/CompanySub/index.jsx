@@ -8,6 +8,31 @@ import { Button, Container, Row, Col } from "reactstrap";
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
+
+import Popup from "../../views/IndexSections/Popup";
+import { CreateFlow } from "../../components/Superfluid/createflow.js";
+import { DeleteFlow } from "../../components/Superfluid/deleteflow.js";
+
+function FlowPopUp() {
+  const [ createButtonPopup, createSetButtonPopup] = useState(false);
+  const [ deleteButtonPopup, deleteSetButtonPopup] = useState(false);
+
+  return (
+    <div>
+      <main>
+        <button onClick={() => { createSetButtonPopup(true) }}>Create Flow</button>
+        <button onClick={() => { deleteSetButtonPopup(true) }}>Delete Flow</button>
+      </main>
+      <Popup trigger={createButtonPopup} setTrigger={createSetButtonPopup}>
+        <CreateFlow />
+      </Popup>
+      <Popup trigger={deleteButtonPopup} setTrigger={deleteSetButtonPopup}>
+        <DeleteFlow />
+      </Popup>
+    </div>
+  );
+}
+
 export const CompanySub = ({ company }) => {
   const { data } = useAccount();
 
@@ -20,7 +45,7 @@ export const CompanySub = ({ company }) => {
               <div className="col px-0">
                 <Row className="align-items-center justify-content-center">
                   <Col className="text-center">
-                    
+
                     oh it's {company} time
 
                     {!data ?
@@ -29,7 +54,7 @@ export const CompanySub = ({ company }) => {
                       </div>
                       :
                       <div>
-                        <button>Subscribe</button>
+                        <FlowPopUp />
                       </div>
                     }
 
@@ -56,7 +81,7 @@ export const CompanySub = ({ company }) => {
           </section>
         </div>
   );
-  
+
 }
 
 export default CompanySub;

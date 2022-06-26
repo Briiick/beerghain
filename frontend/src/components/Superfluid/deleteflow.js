@@ -5,8 +5,10 @@ import { ethers } from "ethers";
 
 import { useAccount } from 'wagmi';
 
+const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
+
 //where the Superfluid logic takes place
-async function deleteFlow(recipient) {
+async function deleteFlow(recipient, data) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
@@ -22,7 +24,7 @@ async function deleteFlow(recipient) {
 
   try {
     const deleteFlowOperation = sf.cfaV1.deleteFlow({
-      sender: "0xDCB45e4f6762C3D7C61a00e96Fb94ADb7Cf27721",
+      sender: data.address,
       receiver: recipient,
       superToken: DAIx
       // userData?: string
@@ -36,7 +38,7 @@ async function deleteFlow(recipient) {
       `Congrats - you've just deleted your money stream!
        Network: Kovan
        Super Token: DAIx
-       Sender: 0xDCB45e4f6762C3D7C61a00e96Fb94ADb7Cf27721
+       Sender: ${data.address}
        Receiver: ${recipient}
     `
     );
@@ -46,7 +48,7 @@ async function deleteFlow(recipient) {
 }
 
 export const DeleteFlow = () => {
-    const { data } = useAccount("");
+    const { data } = useAccount();
     const [isButtonLoading, setIsButtonLoading] = useState(false);
 
     function DeleteButton({ isLoading, children, ...props }) {
@@ -57,6 +59,7 @@ export const DeleteFlow = () => {
     );
     }
 
+
     return (
         <div>
             <h2>Delete a Flow</h2>
@@ -65,7 +68,7 @@ export const DeleteFlow = () => {
             <DeleteButton
                 onClick={() => {
                 setIsButtonLoading(true);
-                deleteFlow(data.address);
+                deleteFlow(airbnb_address, data);
                 setTimeout(() => {
                     setIsButtonLoading(false);
                 }, 1000);

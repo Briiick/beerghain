@@ -5,8 +5,10 @@ import { ethers } from "ethers";
 
 import { useAccount } from 'wagmi';
 
+const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
+
 //where the Superfluid logic takes place
-async function createNewFlow(recipient, flowRate) {
+async function createNewFlow(recipient, flowRate, data) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
@@ -36,9 +38,9 @@ async function createNewFlow(recipient, flowRate) {
       console.log(
         `Congrats - you've just created a money stream!
       View Your Stream At: https://app.superfluid.finance/dashboard/${recipient}
-      Network: Kovan
+      Network: Rinkeby
       Super Token: DAIx
-      Sender: 0xDCB45e4f6762C3D7C61a00e96Fb94ADb7Cf27721
+      Sender: ${data.address}
       Receiver: ${recipient},
       FlowRate: ${flowRate}
       `
@@ -52,11 +54,10 @@ async function createNewFlow(recipient, flowRate) {
 }
 
 export const CreateFlow = () => {
-    const [recipient, setRecipient] = useState("");
     const [isButtonLoading, setIsButtonLoading] = useState(false);
     const [flowRate, setFlowRate] = useState("");
     const [flowRateDisplay, setFlowRateDisplay] = useState("");
-    const { data } = useAccount("");
+    const { data } = useAccount();
 
     console.log("Logged into account: ", data.address);
 
@@ -83,10 +84,6 @@ export const CreateFlow = () => {
       );
     }
 
-    const handleRecipientChange = (e) => {
-      setRecipient(() => ([e.target.name] = e.target.value));
-    };
-
     const handleFlowRateChange = (e) => {
       setFlowRate(() => ([e.target.name] = e.target.value));
       let newFlowRateDisplay = calculateFlowRate(e.target.value);
@@ -103,14 +100,6 @@ export const CreateFlow = () => {
             <Form>
                 <FormGroup className="mb-3">
                     <FormControl
-                        name="recipient"
-                        value={recipient}
-                        onChange={handleRecipientChange}
-                        placeholder="Enter recipient address"
-                    ></FormControl>
-                </FormGroup>
-                <FormGroup className="mb-3">
-                    <FormControl
                         name="flowRate"
                         value={flowRate}
                         onChange={handleFlowRateChange}
@@ -120,7 +109,7 @@ export const CreateFlow = () => {
                 <CreateButton
                     onClick={() => {
                         setIsButtonLoading(true);
-                        createNewFlow(recipient, flowRate);
+                        createNewFlow(airbnb_address, flowRate, data);
                         setTimeout(() => {
                             setIsButtonLoading(false);
                         }, 1000);
