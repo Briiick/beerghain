@@ -9,7 +9,7 @@ import CardsFooter from "components/Footers/CardsFooter.js";
 import CompanyDash from "components/CompanyList/index.jsx";
 
 import Popup from "../IndexSections/Popup";
-import { CreateFlow } from "../Superfluid/createflow.js";
+import { CreateFlow } from "../../components/Superfluid/createflow.js";
 
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
