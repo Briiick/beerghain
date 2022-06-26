@@ -63,7 +63,7 @@ export const Hero = () => {
                         </Headings>
                       </Fade>
                     </div>
-                    {active && 
+                    {(active && currAddress) && 
                       <Fade when={active}>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <ProfileWrap>
@@ -88,11 +88,12 @@ export const Hero = () => {
 
                     <div className="btn-wrapper mt-5">
                       {!currAddress &&
-                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', flexDirection: 'column' }}>
+                          <h3 style={{ marginBottom: "30px", color: 'white', fontWeight: 600}}>Connect wallet to begin</h3>
                           <ConnectButton />
                         </div>
                       }
-                      {!active &&
+                      {(!active && currAddress) &&
                         <Fade>
                           <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', width: '100%' }}>
                             <CompanyForm onSubmit={(e) => handleSubmit(e)} style={active ? {opacity: 0} : {opacity: 1}}>
@@ -108,7 +109,7 @@ export const Hero = () => {
                         </Fade>
                       }
                     </div>
-                    {active &&  
+                    {(currAddress && active) &&  
                       <Fade when={active}>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                           <Headings style={{ textAlign: 'center', marginTop: '20px' }}><h3>User List</h3></Headings>
