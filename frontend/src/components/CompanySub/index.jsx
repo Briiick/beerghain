@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { GiSplashyStream } from "react-icons/gi";
-import { CompanyForm, TextInput, Submit, StreamingButton, Headings } from './styles.js';
+import { Submit } from './styles.js';
 import { UserList } from '../UserList/index.jsx';
 import Fade from 'react-reveal/Fade';
 // reactstrap components
@@ -15,14 +15,18 @@ function FlowPopUp() {
   const [ createButtonPopup, createSetButtonPopup] = useState(false);
   const [ deleteButtonPopup, deleteSetButtonPopup] = useState(false);
 
+  const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
+
   return (
     <div>
       <main>
-        <button onClick={() => { createSetButtonPopup(true) }}>Subscribe</button>
-        <button onClick={() => { deleteSetButtonPopup(true) }}>Unsubscribe</button>
+        <div>
+          <Submit onClick={() => { createSetButtonPopup(true) }}>Subscribe</Submit>
+          <Submit onClick={() => { deleteSetButtonPopup(true) }}>Unsubscribe</Submit>
+        </div>
       </main>
       <Popup trigger={createButtonPopup} setTrigger={createSetButtonPopup}>
-        <CreateFlow />
+        <CreateFlow address={airbnb_address}/>
       </Popup>
       <Popup trigger={deleteButtonPopup} setTrigger={deleteSetButtonPopup}>
         <DeleteFlow />
@@ -44,7 +48,7 @@ export const CompanySub = ({ company }) => {
                 <Row className="align-items-center justify-content-center">
                   <Col className="text-center">
 
-                    oh it's {company} time
+                    <h3 style={{ color: 'white', fontWeight: 700 }}>{company}</h3>
 
                     {!data ?
                       <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>

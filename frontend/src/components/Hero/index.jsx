@@ -9,6 +9,42 @@ import axios from 'axios';
 import { Button, Container, Row, Col } from "reactstrap";
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { InsuranceContractABI, CONTRACT_ADDRESS } from '../../contract_abi.js';
+import Popup from "../../views/IndexSections/Popup";
+import { CreateFlow } from "../../components/Superfluid/createflow.js";
+import { DeleteFlow } from "../../components/Superfluid/deleteflow.js";
+
+function FlowPopUp() {
+  const [ createButtonPopup, createSetButtonPopup] = useState(false);
+  const [ deleteButtonPopup, deleteSetButtonPopup] = useState(false);
+
+  return (
+    <div>
+      <main style={{ width: '100%' }}>
+        <div style={{ display: 'flex', width: '100%', overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
+          <Button className="btn-icon mb-3 mb-sm-0" size="lg" style={{ borderRadius: '15px', margin: '10px' }} onClick={() => { createSetButtonPopup(true) }}>
+            <span className="btn-inner--icon mr-1" style={{ marginBottom: '10px' }} ><GiSplashyStream style={{ marginBottom: '6px', color: 'green'}} /></span>
+            <span className="btn-inner--text">
+              {<span style={{ color: 'green' }}>Resume Coverage</span> }
+            </span>
+          </Button>
+          <Button className="btn-icon mb-3 mb-sm-0" size="lg" style={{ borderRadius: '15px', margin: '10px' }} onClick={() => { deleteSetButtonPopup(true) }}>
+            <span className="btn-inner--icon mr-1" style={{ marginBottom: '10px' }} ><GiSplashyStream style={{ marginBottom: '6px', color: 'tomato'}} /></span>
+            <span className="btn-inner--text">
+              {<span style={{ color: 'tomato' }}>Halt Coverage</span> }
+            </span>
+          </Button>
+        </div>
+      </main>
+      <Popup trigger={createButtonPopup} setTrigger={createSetButtonPopup}>
+        <CreateFlow address={CONTRACT_ADDRESS}/>
+      </Popup>
+      <Popup trigger={deleteButtonPopup} setTrigger={deleteSetButtonPopup}>
+        <DeleteFlow />
+      </Popup>
+    </div>
+  );
+}
 
 export const Hero = () => {
   const [active, setActive] = useState(false);
@@ -90,12 +126,7 @@ export const Hero = () => {
                               <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
                                 <StreamingButton streaming={streaming}>{streaming ? "Covered" : "Not Covered"}</StreamingButton>
                               </div>
-                              <Button className="btn-icon mb-3 mb-sm-0" size="lg" style={{ borderRadius: '15px', margin: '10px' }} onClick={(e) => handleStream(e)}>
-                                <span className="btn-inner--icon mr-1" style={{ marginBottom: '10px' }} ><GiSplashyStream style={ !streaming ? { marginBottom: '6px', color: 'green'} : {marginBottom: '6px', color: "tomato" }} /></span>
-                                <span className="btn-inner--text">
-                                  {!streaming ? <span style={{ color: 'green' }}>Resume Coverage</span> : <span style={{ color: 'tomato' }}>Stop Coverage</span>}
-                                </span>
-                              </Button>
+                              <FlowPopUp />
                           </ProfileWrap>
                         </div>
                       </Fade>
