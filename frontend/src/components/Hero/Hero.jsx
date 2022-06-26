@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { RiWallet3Fill, RiAlarmWarningLine, RiStopCircleLine } from "react-icons/ri";
 import { Logo } from 'assets/logo/logo.js';
 import { CompanyForm, TextInput, Submit } from './styles.js';
@@ -7,28 +7,18 @@ import Fade from 'react-reveal/Fade';
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 
-class Hero extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      address: "",
-      active: false,
+export const Hero = ({loggedIn, handleLogin}) => {
+    const [active, setActive] = useState(false);
+    const [currAddress, setCurrAddress] = useState('');
+    console.log("PROPS", loggedIn);
+
+    const handleSubmit = (e) => {
+      console.log("submitting: ", e.target.value)
+      setActive(true);
     }
-  }
 
-  componentDidMount() {
-    this.setState({ total: 100 }); //Pass in actual total value in contract
-  }
-
-  handleSubmit = (e) => {
-    // submit to backend pls RRRRRRUBAN
-    console.log("Submitting form", e.target.value);
-    this.setState({ active: true });
-  }
-
-  
-  render() {
     const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}]; 
+
     return (
       <>
         <div className="position-relative" style={{ }}>
@@ -57,25 +47,25 @@ class Hero extends React.Component {
 
 
                     <div className="btn-wrapper mt-5">
-                      {this.props.loggedIn ?
+                      {!loggedIn ?
                       <Button className="btn-white btn-icon mb-3 mb-sm-0" color="default" size="lg">
                         <span className="btn-inner--icon mr-1">
                           <RiWallet3Fill style={{ marginBottom: '4px', marginLeft: '2px' }} />
                         </span>
-                        <span className="btn-inner--text" style={{ marginLeft: '3px' }}>Connect Wallet</span>
+                        <span className="btn-inner--text" style={{ marginLeft: '3px' }} onClick={(e) => handleLogin(e)}>Connect Wallet</span>
                       </Button>
                       :
                         <CompanyForm onSubmit={(e) => this.handleSubmit(e)}>
                           <h4>Create Company Subscription</h4>
-                          <TextInput type="text" placeholder="Company Name" id="name" />
-                          <TextInput type="email" placeholder="Company Email" id="email" />
-                          <label for="file">Choose file to upload</label>
-                          <input type="file" id="logo" accept="image/png, image/jpeg"/>
-                          <input type="hidden" id="address" value={this.state.address} />
-                          <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription" />
+                          <TextInput type="text" placeholder="Company Name" id="name" required/>
+                          <TextInput type="email" placeholder="Company Email" id="email" required/>
+                          {/* <label for="file">Choose file to upload</label> */}
+                          <TextInput type="number" id="price" placeholder="Monthly Price" required/>
+                          <input type="hidden" id="address" value={currAddress} />
+                          <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription">Issue Subscription</Submit>
                         </CompanyForm>
                       }
-                      <Fade when={this.state.active}>
+                      <Fade when={active}>
                         <UserList users={users}/>
                       </Fade>
 
@@ -83,7 +73,7 @@ class Hero extends React.Component {
                     </div>
                     <div className="mt-5">
                       <small className="text-white font-weight-bold mb-0 mr-2">
-                        {this.props.currAddress && `Address: ${this.props.currAddress}`}
+                        {currAddress && `Address: ${currAddress}`}
                       </small>
                     </div>
                   </Col>
@@ -111,6 +101,5 @@ class Hero extends React.Component {
       </>
     );
   }
-}
 
 export default Hero;
