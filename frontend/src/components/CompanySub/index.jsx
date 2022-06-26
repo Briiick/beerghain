@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { GiSplashyStream } from "react-icons/gi";
-import { CompanyForm, TextInput, Submit, StreamingButton, Headings } from './styles.js';
+import { Submit } from './styles.js';
 import { UserList } from '../UserList/index.jsx';
 import Fade from 'react-reveal/Fade';
 // reactstrap components
@@ -18,8 +18,10 @@ function FlowPopUp() {
   return (
     <div>
       <main>
-        <button onClick={() => { createSetButtonPopup(true) }}>Subscribe</button>
-        <button onClick={() => { deleteSetButtonPopup(true) }}>Unsubscribe</button>
+        <div>
+          <Submit onClick={() => { createSetButtonPopup(true) }}>Subscribe</Submit>
+          <Submit onClick={() => { deleteSetButtonPopup(true) }}>Unsubscribe</Submit>
+        </div>
       </main>
       <Popup trigger={createButtonPopup} setTrigger={createSetButtonPopup}>
         <CreateFlow />
@@ -44,7 +46,7 @@ export const CompanySub = ({ company }) => {
                 <Row className="align-items-center justify-content-center">
                   <Col className="text-center">
 
-                    oh it's {company} time
+                    <h3 style={{ color: 'white', fontWeight: 700 }}>{company}</h3>
 
                     {!data ?
                       <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
