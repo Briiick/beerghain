@@ -3,13 +3,13 @@ import { useState } from "react";
 
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import CardsFooter from "components/Footers/CardsFooter.js";
+// import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
-import CompanyDash from "components/CompanyList/index.jsx";
+import CompanySub from "components/CompanySub/index.jsx";
 
 import Popup from "../IndexSections/Popup";
-import { CreateFlow } from "../../components/Superfluid/createflow.js";
+import { CreateFlow } from "components/Superfluid/createflow.js";
 
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
@@ -54,10 +54,10 @@ class Airbnb extends React.Component {
         <DemoNavbar />
           <main ref="main">
             hi Airbnb
-            <CompanyDash company={"Airbnb"} />
+            <CompanySub company={"Airbnb"} />
             <FlowPopUp/>
           </main>
-        <CardsFooter />
+        {/* <CardsFooter /> */}
       </>
     );
   }

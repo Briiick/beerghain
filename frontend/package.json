@@ -73,6 +73,7 @@
     "reactstrap": "8.4.1",
     "style-components": "^0.1.0",
     "styled-components": "^5.3.5",
+    "superfluid": "^0.0.11",
     "wagmi": "^0.4.12"
   },
   "devDependencies": {
