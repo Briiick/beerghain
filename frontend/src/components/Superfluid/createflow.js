@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { Framework } from "views/Subscribe/node_modules/@superfluid-finance/sdk-core";
+import { Framework } from "@superfluid-finance/sdk-core";
 import { Button, Form, FormGroup, FormControl, Spinner } from "react-bootstrap";
 import { ethers } from "ethers";
 

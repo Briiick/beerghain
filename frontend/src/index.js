@@ -14,11 +14,11 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact render={props => <Index {...props} />} />
       <Route
-        path="/subscribe/airbnb"
+        path="/subscribe-airbnb"
         exact
         render={props => <Airbnb {...props} />}
       />
-      <Redirect to="/" />
+      {/* <Redirect to="/" /> */}
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
