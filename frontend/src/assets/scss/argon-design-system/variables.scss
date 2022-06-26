@@ -140,9 +140,9 @@ $shapes-primary-colors: map-merge((
 
 $shapes-default-colors: () !default;
 $shapes-default-colors: map-merge((
-  "step-1-gradient-bg":         #1c243b,
-  "step-2-gradient-bg":         #151a4e,
-  "step-3-gradient-bg":         #0c126b,
+  "step-1-gradient-bg":         #000000,
+  "step-2-gradient-bg":         #01055a,
+  "step-3-gradient-bg":         #0e1575,
   "span-1-bg":                  #7795f8,
   "span-2-bg":                  #7b9aff,
   "span-3-bg":                  #6f8ff8,
