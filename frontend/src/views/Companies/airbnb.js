@@ -28,21 +28,6 @@ const provider = new ethers.providers.AlchemyProvider(
 //   provider
 // });
 
-
-  return (
-    <div>
-      <main>
-        <button onClick={() => { setButtonPopup(true) }}>Create Flow</button>
-      </main>
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <CreateFlow />
-      </Popup>
-    </div>
-  );
-}
-
-
-
 class Airbnb extends React.Component {
 
   componentDidMount() {

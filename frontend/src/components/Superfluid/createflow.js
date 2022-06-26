@@ -85,10 +85,6 @@ export const CreateFlow = () => {
       );
     }
 
-    const handleRecipientChange = (e) => {
-      setRecipient(() => ([e.target.name] = e.target.value));
-    };
-
     const handleFlowRateChange = (e) => {
       setFlowRate(() => ([e.target.name] = e.target.value));
       let newFlowRateDisplay = calculateFlowRate(e.target.value);
