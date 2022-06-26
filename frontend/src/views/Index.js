@@ -29,7 +29,7 @@ class Index extends React.Component {
   render() {
     return (
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider chains={chains} coolMode>
           <>
             <DemoNavbar />
             <main ref="main">

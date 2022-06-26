@@ -11,11 +11,13 @@ import {
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
+const ALCHEMY_ID = process.env.ALCHEMY_ID;
+
 export const { chains, provider } = configureChains(
     // add more chains here.
   [chain.rinkeby],
   [
-    alchemyProvider({ alchemyId: process.env.ALCHEMY_ID }),
+    alchemyProvider({ alchemyId: ALCHEMY_ID }),
     publicProvider()
   ]
 );
