@@ -13,11 +13,12 @@ export const Hero = ({loggedIn, handleLogin}) => {
     console.log("PROPS", loggedIn);
 
     const handleSubmit = (e) => {
-      console.log("submitting: ", e.target.value)
+      e.preventDefault();
+      console.log("submitting: ", e.target.value);
       setActive(true);
     }
 
-    const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}]; 
+    const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}, {name: "Gayvid Witten", status: false}, {name: "Eilrene Gwu", status: true}, {name: "Trenton I Reckon", status: true}]; 
 
     return (
       <>
@@ -55,22 +56,24 @@ export const Hero = ({loggedIn, handleLogin}) => {
                         <span className="btn-inner--text" style={{ marginLeft: '3px' }} onClick={(e) => handleLogin(e)}>Connect Wallet</span>
                       </Button>
                       :
-                        <CompanyForm onSubmit={(e) => this.handleSubmit(e)}>
-                          <h4>Create Company Subscription</h4>
-                          <TextInput type="text" placeholder="Company Name" id="name" required/>
-                          <TextInput type="email" placeholder="Company Email" id="email" required/>
-                          {/* <label for="file">Choose file to upload</label> */}
-                          <TextInput type="number" id="price" placeholder="Monthly Price" required/>
-                          <input type="hidden" id="address" value={currAddress} />
-                          <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription">Issue Subscription</Submit>
-                        </CompanyForm>
+                        <Fade when={loggedIn && !active}>
+                          <CompanyForm onSubmit={(e) => handleSubmit(e)} style={active ? {opacity: 0} : {opacity: 1}}>
+                            <h4>Create Company Subscription</h4>
+                            <TextInput type="text" placeholder="Company Name" id="name" required/>
+                            <TextInput type="email" placeholder="Company Email" id="email" required/>
+                            {/* <label for="file">Choose file to upload</label> */}
+                            <TextInput type="number" id="price" placeholder="Monthly Price" required/>
+                            <input type="hidden" id="address" value={currAddress} />
+                            <Submit className="btn-icon mb-3 mb-sm-0" color="github" size="lg" type="submit" value="Issue Subscription">Issue Subscription</Submit>
+                          </CompanyForm>
+                        </Fade>
                       }
+                    </div>
                       <Fade when={active}>
                         <UserList users={users}/>
                       </Fade>
 
 
-                    </div>
                     <div className="mt-5">
                       <small className="text-white font-weight-bold mb-0 mr-2">
                         {currAddress && `Address: ${currAddress}`}

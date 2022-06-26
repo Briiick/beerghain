@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CompanyForm = styled.div`
+export const CompanyForm = styled.form`
   padding: 8%;
   border-radius: 15px;
   background-color: white;

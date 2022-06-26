@@ -8,7 +8,7 @@ import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 
 // index page sections
-import Hero from "../components/Hero/Hero.jsx";
+import Hero from "../components/Hero/index.jsx";
 
 class Index extends React.Component {
   constructor(props) {
