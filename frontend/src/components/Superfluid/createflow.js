@@ -6,8 +6,6 @@ import { ethers } from "ethers";
 import { useAccount } from 'wagmi';
 
 
-const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
-
 //where the Superfluid logic takes place
 async function createNewFlow(recipient, flowRate, data) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -54,7 +52,7 @@ async function createNewFlow(recipient, flowRate, data) {
     }
 }
 
-export const CreateFlow = () => {
+export const CreateFlow = ({ address }) => {
     const [isButtonLoading, setIsButtonLoading] = useState(false);
     const [flowRate, setFlowRate] = useState("");
     const [flowRateDisplay, setFlowRateDisplay] = useState("");
@@ -110,7 +108,7 @@ export const CreateFlow = () => {
                 <CreateButton
                     onClick={() => {
                         setIsButtonLoading(true);
-                        createNewFlow(airbnb_address, flowRate, data);
+                        createNewFlow(address, flowRate, data);
                         setTimeout(() => {
                             setIsButtonLoading(false);
                         }, 1000);

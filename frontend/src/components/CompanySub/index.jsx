@@ -15,6 +15,8 @@ function FlowPopUp() {
   const [ createButtonPopup, createSetButtonPopup] = useState(false);
   const [ deleteButtonPopup, deleteSetButtonPopup] = useState(false);
 
+  const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
+
   return (
     <div>
       <main>
@@ -24,7 +26,7 @@ function FlowPopUp() {
         </div>
       </main>
       <Popup trigger={createButtonPopup} setTrigger={createSetButtonPopup}>
-        <CreateFlow />
+        <CreateFlow address={airbnb_address}/>
       </Popup>
       <Popup trigger={deleteButtonPopup} setTrigger={deleteSetButtonPopup}>
         <DeleteFlow />
