@@ -29,7 +29,7 @@ export const TextInput = styled.input`
     justify-content: center;
 `;
 
-export const Submit = styled.input`
+export const Submit = styled.button`
     height: 60px;
     border-radius: 40px;
     border: 1px solid rgb(255,133, 30, 0.3);
@@ -38,7 +38,7 @@ export const Submit = styled.input`
     padding: 0 5%;
     font-weight: 590;
     color: white;
-    transition: 0.3s linear;
+    transition: 0.3s ease;
 
     &:hover {
         background-color: #0c1d37;

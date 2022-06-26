@@ -11,6 +11,18 @@ import CardsFooter from "components/Footers/CardsFooter.js";
 import Hero from "../components/Hero/Hero.jsx";
 
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: '',
+    };
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin(e) {
+    this.setState({ loggedIn: true })
+  }
+
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -19,9 +31,9 @@ class Index extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        <DemoNavbar loggedIn={this.state.loggedIn} handleLogin={this.handleLogin}/>
         <main ref="main">
-          <Hero />
+          <Hero loggedIn={this.state.loggedIn} handleLogin={this.handleLogin}/>
         </main>
         <CardsFooter />
       </>
