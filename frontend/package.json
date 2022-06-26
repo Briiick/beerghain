@@ -48,8 +48,10 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@rainbow-me/rainbowkit": "^0.3.4",
     "bootstrap": "4.3.1",
     "classnames": "2.2.6",
+    "ethers": "^5.6.9",
     "headroom.js": "0.11.0",
     "moment": "2.24.0",
     "node-sass": "^7.0.1",
@@ -64,7 +66,8 @@
     "react-scripts": "^5.0.0",
     "reactstrap": "8.4.1",
     "style-components": "^0.1.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "wagmi": "^0.4.12"
   },
   "devDependencies": {
     "@types/googlemaps": "3.39.2",
