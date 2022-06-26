@@ -6,7 +6,17 @@ import Fade from 'react-reveal/Fade';
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
 import { useAccount } from 'wagmi';
+import { InsuranceContractABI, CONTRACT_ADDRESS } from '../../contract_abi.js';
+import { ethers } from 'ethers';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+// let provider = new ethers.providers.Web3Provider(web3.currentProvider);
+// await provider.send("eth_requestAccounts", []);
+// const signer = provider.getSigner();
+
+// const contract = new ethers.Contract(InsuranceContractABI, CONTRACT_ADDRESS, signer);
+// await contract.functionName(args);
+
 
 export const Hero = () => {
   const [active, setActive] = useState(false);
@@ -15,22 +25,39 @@ export const Hero = () => {
   const PREMIUM_PRICE_MONTHLY = 6;
   const SECONDS_PER_MONTH = 2628288;
   const [currAddress, setCurrAddress] = useState('');
-  const { data } = useAccount();
+  const { ethereum } = window;
+  let provider;
+  let signer;
   
-  
-  useEffect(() => {
-    setCurrAddress(data?.address);
-  });
+  async function connectWallet() {
+    document.querySelector("#btn-connect").innerText = "Connecting...";
+
+    if (ethereum) {
+      await ethereum.request({ method: "eth_requestAccounts"});
+      provider = new ethers.providers.Web3Provider(ethereum);
+      signer = provider.getSigner(0);
+      const connectedUserAddress = await signer.getAddress();
+
+      setCurrAddress(connectedUserAddress);
+    } else {
+      console.log("Connect Failed");
+    }
+  }
 
   const handleStream = (e) => {
     setStreaming(!streaming);
-  }
+  };
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("submitting: ", e.target.value);
-      setActive(true);
-    }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let provider = new ethers.providers.Web3Provider(ethereum);
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(InsuranceContractABI, CONTRACT_ADDRESS, signer);
+    let x = await contract.joinInsurancePool();
+    if(x) setActive(true);
+  }
 
     const users = [{name: "Alex Wicken", status: true}, {name: "Booban Bengaraju", status: true}, {name: "Gayvid Witten", status: false}, {name: "Eilrene Gwu", status: true}, {name: "Trenton I Reckon", status: true}]; 
 
@@ -90,14 +117,15 @@ export const Hero = () => {
                       {!currAddress &&
                         <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', flexDirection: 'column' }}>
                           <h3 style={{ marginBottom: "30px", color: 'white', fontWeight: 600}}>Connect wallet to begin</h3>
-                          <ConnectButton />
+                          <Submit id="btn-connect" onClick={() => connectWallet()}>Connect Wallet</Submit>
+                          {/* <ConnectButton /> */}
                         </div>
                       }
                       {(!active && currAddress) &&
                         <Fade>
                           <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', width: '100%' }}>
                             <CompanyForm onSubmit={(e) => handleSubmit(e)} style={active ? {opacity: 0} : {opacity: 1}}>
-                              <h4 style={{ color: 'white' }}>Create Company Subscription</h4>
+                              <h4 style={{ color: 'white', marginBottom: '18px' }}>Create Company Subscription</h4>
                               <TextInput type="text" placeholder="Company Name" id="name" required/>
                               <TextInput type="email" placeholder="Company Email" id="email" required/>
                               {/* <label for="file">Choose file to upload</label> */}

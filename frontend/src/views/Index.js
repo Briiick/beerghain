@@ -20,6 +20,7 @@ class Index extends React.Component {
     super(props);
   }
 
+
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;

@@ -92,7 +92,7 @@ class DemoNavbar extends React.Component {
                 
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
                   <NavItem>
-                      <ConnectButton />
+                      {/* <ConnectButton /> */}
                   </NavItem>
                 </Nav>
               </UncontrolledCollapse>

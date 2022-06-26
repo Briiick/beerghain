@@ -15,7 +15,7 @@ const ALCHEMY_ID = process.env.ALCHEMY_ID;
 
 export const { chains, provider } = configureChains(
     // add more chains here.
-  [chain.rinkeby],
+  [chain.ropsten],
   [
     alchemyProvider({ alchemyId: ALCHEMY_ID }),
     publicProvider()

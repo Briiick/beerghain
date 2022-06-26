@@ -10,7 +10,7 @@ export const CompanyForm = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-//   box-shadow: 0px 00px 40px 0.1px rgb(255,133, 30, 0.5);
+  box-shadow: 0px 00px 15px 0.1px rgb(255,133, 30, 0.5);
 
   h4 {
       font-weight: 600;
@@ -31,6 +31,7 @@ export const TextInput = styled.input`
     justify-content: center;
     color: white;
     background-color: transparent;
+    box-shadow: 0px 00px 2px 0.1px rgb(255,133, 30, 0.5);
 `;
 
 export const Submit = styled.button`
@@ -40,9 +41,9 @@ export const Submit = styled.button`
     outline: none;
     background-color: #ff6500;
     margin: 2vh;
-    padding: 0 4%;
+    padding: 0 6%;
     font-weight: 590;
-    color: white;
+    color: black;
     transition: 0.1s ease;
 
     background-image: url("https://assets.website-files.com/611580035ad59b20437eb024/616f998c4fdccc1e0de4e5a1_btn%20background%20(1).png");
@@ -93,6 +94,19 @@ export const Headings = styled.div`
 `;
 
 export const ProfileWrap = styled.div`
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4%;
+    padding-bottom: 4%;
+    background-color: #0a0810;
+    outline: 2px solid #1c161f;
+    border-radius: 20px;
+`;
+
+export const ConnectButton = styled.button`
     display: flex;
     width: fit-content;
     flex-direction: column;

@@ -20,7 +20,7 @@ import { WagmiConfig } from 'wagmi';
 const ALCHEMY_ID = process.env.ALCHEMY_ID;
 
 const provider = new ethers.providers.AlchemyProvider(
-  "rinkeby",
+  "ropsten",
   ALCHEMY_ID
 );
 // const sf = await Framework.create({
