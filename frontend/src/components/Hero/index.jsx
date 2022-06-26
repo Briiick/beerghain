@@ -69,7 +69,7 @@ export const Hero = () => {
                           <ProfileWrap>
                               <div className="mt-5" style={{ marginTop: 0 }}>
                                 <small className="text-white font-weight-bold mb-0 mr-2">
-                                  {currAddress && `Address: ${currAddress}:`}
+                                  {currAddress && `Address: ${currAddress}`}
                                 </small>
                               </div>
                               <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
