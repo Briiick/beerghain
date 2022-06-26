@@ -1,10 +1,11 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { Button, Form, FormGroup, FormControl, Spinner } from "react-bootstrap";
 import { ethers } from "ethers";
 
 import { useAccount } from 'wagmi';
 
+import axios from "axios";
 
 const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
 
@@ -59,6 +60,16 @@ export const CreateFlow = () => {
     const [flowRate, setFlowRate] = useState("");
     const [flowRateDisplay, setFlowRateDisplay] = useState("");
     const { data } = useAccount();
+    const [ethValue, setEthValue] = useState([]);
+
+    const getEthValue = async () => {
+      const { ethValue } = await axios.get(`https://api.covalenthq.com/v1/1/address/0x2f9c12a06033E208d1035aEE070E594857C7E999/balances_v2/?key=ckey_e973180e3bd940899f9500a3f85`);
+      setEthValue(ethValue['data']['data']['items'][0]['quote_rate']);
+    };
+
+    useEffect(() => {
+      getEthValue();
+    }, []);
 
     console.log("Logged into account: ", data.address);
 
@@ -90,6 +101,9 @@ export const CreateFlow = () => {
       let newFlowRateDisplay = calculateFlowRate(e.target.value);
       setFlowRateDisplay(newFlowRateDisplay.toString());
     };
+
+    const valueOfEth =  getEthValue();
+    console.log("Value of ETH: ", valueOfEth);
 
     return (
       <div>
@@ -124,6 +138,7 @@ export const CreateFlow = () => {
                     <p>Your flow will be equal to:</p>
                     <p>
                         <b>${flowRateDisplay !== " " ? flowRateDisplay : 0}</b> DAIx/month
+                        <b>${ethValue}</b>
                     </p>
                 </div>
             </div>
