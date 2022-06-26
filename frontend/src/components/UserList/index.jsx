@@ -29,9 +29,9 @@ export const UserList = (props) => {
                 return (
                   <Cell hidden={!(i <= (ITEMSPERPAGE * index) && i > (ITEMSPERPAGE * (index - 1)))} key={i}>
                     <InnerCell>{x.name}</InnerCell>
-                    <InnerCell>{x.status ? "True" : "False"}</InnerCell>
+                    <InnerCell>{x.status ? "Live" : "Expired"}</InnerCell>
                     <InnerCell>
-                      {!x.status ? <Stage>Issue Claim</Stage> : " - "}
+                      {x.status ? <Stage>Issue Claim</Stage> : " - "}
                     </InnerCell>
                   </Cell>
                 )

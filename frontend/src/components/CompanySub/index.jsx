@@ -7,8 +7,6 @@ import Fade from 'react-reveal/Fade';
 import { Button, Container, Row, Col } from "reactstrap";
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
-
 import Popup from "../../views/IndexSections/Popup";
 import { CreateFlow } from "../../components/Superfluid/createflow.js";
 import { DeleteFlow } from "../../components/Superfluid/deleteflow.js";
@@ -20,8 +18,8 @@ function FlowPopUp() {
   return (
     <div>
       <main>
-        <button onClick={() => { createSetButtonPopup(true) }}>Create Flow</button>
-        <button onClick={() => { deleteSetButtonPopup(true) }}>Delete Flow</button>
+        <button onClick={() => { createSetButtonPopup(true) }}>Subscribe</button>
+        <button onClick={() => { deleteSetButtonPopup(true) }}>Unsubscribe</button>
       </main>
       <Popup trigger={createButtonPopup} setTrigger={createSetButtonPopup}>
         <CreateFlow />
@@ -54,6 +52,7 @@ export const CompanySub = ({ company }) => {
                       </div>
                       :
                       <div>
+
                         <FlowPopUp />
                       </div>
                     }
@@ -81,7 +80,6 @@ export const CompanySub = ({ company }) => {
           </section>
         </div>
   );
-
 }
 
 export default CompanySub;

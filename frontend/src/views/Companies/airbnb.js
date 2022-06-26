@@ -8,6 +8,8 @@ import CardsFooter from "components/Footers/CardsFooter.js";
 // index page sections
 import CompanySub from "components/CompanySub/index.jsx";
 
+import Popup from "../IndexSections/Popup";
+import { CreateFlow } from "components/Superfluid/createflow.js";
 
 import { Framework } from "@superfluid-finance/sdk-core";
 import { ethers } from "ethers";
@@ -27,6 +29,17 @@ const provider = new ethers.providers.AlchemyProvider(
 // });
 
 
+  return (
+    <div>
+      <main>
+        <button onClick={() => { setButtonPopup(true) }}>Create Flow</button>
+      </main>
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <CreateFlow />
+      </Popup>
+    </div>
+  );
+}
 
 
 

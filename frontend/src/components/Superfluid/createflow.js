@@ -5,6 +5,7 @@ import { ethers } from "ethers";
 
 import { useAccount } from 'wagmi';
 
+
 const airbnb_address = "0x90E0c4e21baA20c5E9591Ce37c1F30da9DE976A6";
 
 //where the Superfluid logic takes place
@@ -41,7 +42,7 @@ async function createNewFlow(recipient, flowRate, data) {
       Network: Rinkeby
       Super Token: DAIx
       Sender: ${data.address}
-      Receiver: ${recipient},
+      Receiver: ${recipient}
       FlowRate: ${flowRate}
       `
       );
@@ -83,6 +84,10 @@ export const CreateFlow = () => {
         </Button>
       );
     }
+
+    const handleRecipientChange = (e) => {
+      setRecipient(() => ([e.target.name] = e.target.value));
+    };
 
     const handleFlowRateChange = (e) => {
       setFlowRate(() => ([e.target.name] = e.target.value));
